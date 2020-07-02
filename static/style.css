@@ -1,0 +1,16 @@
+body {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+footer {
+    margin-top: 50px;
+    font-size: 0.8em;
+}
+.smlimg {
+    max-width: 90px;
+    max-height: 90px;
+}
+.bigimg {
+    max-width: 960px;
+    max-height: 400px;
+}
