@@ -1,5 +1,5 @@
 [package]
-name = "ebb-example"
+name = "toby-pictures"
 version = "0.1.0"
 authors = ["Ryan Gorup <gorup@users.noreply.github.com>"]
 edition = "2018"
