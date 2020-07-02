@@ -14,8 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build
-      run: cargo build --release
+    - name: Install latest nightly
+      uses: actions-rs/toolchain@v1
+      with:
+          toolchain: nightly
+          default: true 
+          override: true
+    - name: Run cargo build
+      uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --release
     - uses: actions/upload-artifact@v2
       with:
         path: target/release/toby-pictures
