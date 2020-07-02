@@ -28,9 +28,8 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         path: target/release/toby-pictures
+    - run: zip -r resources.zip static
+    - run: zip -r resources.zip templates 
     - uses: actions/upload-artifact@v2
       with:
-        path: static
-    - uses: actions/upload-artifact@v2
-      with:
-        path: templates
+        path: resources.zip
