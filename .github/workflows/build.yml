@@ -33,3 +33,11 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         path: resources.zip
+    - name: Push to GitHub Packages
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: gorup/toby-pictures/toby-pictures
+        tags: latest
