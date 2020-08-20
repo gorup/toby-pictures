@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testtobypics
+  labels:
+    app: tobypics
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tobypics
+  template:
+    metadata:
+      labels:
+        app: tobypics
+    spec:
+      containers:
+      - name: tobypics
+        image: docker.pkg.github.com/gorup/toby-pictures/toby-pictures:latest
+        ports:
+        - containerPort: 8000
+      - name: ebbflow
+        image: ebbflow/ebbflow-client-linux-amd64:latest
+        args: ["run-blocking", "--loglevel", "debug", "--port", "8000", "--dns", "bench.ebbflow.io"]
+        env:
+          - name: EBB_KEY
+            valueFrom:
+              secretKeyRef:
+                name: ebbkey
+                key: ebbkey
+      imagePullSecrets:
+      - name: dockerconfigjson-github-com
+
