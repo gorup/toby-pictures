@@ -28,7 +28,7 @@ spec:
           - --port
           - '8000'
           - --dns
-          - bench.ebbflow.io
+          - toby.pictures
           - --healthcheck-port
           - '8000'
         env:
