@@ -5,7 +5,7 @@ metadata:
   labels:
     app: tobypics
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: tobypics
@@ -21,7 +21,16 @@ spec:
         - containerPort: 8000
       - name: ebbflow
         image: ebbflow/ebbflow-client-linux-amd64:latest
-        args: ["run-blocking", "--loglevel", "debug", "--port", "8000", "--dns", "bench.ebbflow.io"]
+        args:
+          - run-blocking
+          - --loglevel
+          - info
+          - --port
+          - '8000'
+          - --dns
+          - bench.ebbflow.io
+          - --healthcheck-port
+          - '8000'
         env:
           - name: EBB_KEY
             valueFrom:
@@ -30,4 +39,3 @@ spec:
                 key: ebbkey
       imagePullSecrets:
       - name: dockerconfigjson-github-com
-
