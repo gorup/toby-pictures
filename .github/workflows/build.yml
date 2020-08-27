@@ -40,4 +40,3 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: gorbot/toby-pictures
         tags: latest
-        path: ./docker/
