@@ -16,20 +16,21 @@ spec:
     spec:
       containers:
       - name: tobypics
-        image: docker.pkg.github.com/gorup/toby-pictures/toby-pictures:latest
+        image: docker.io/gorbot/toby-pictures:latest
         ports:
         - containerPort: 8000
       - name: ebbflow
-        image: ebbflow/ebbflow-client-linux-amd64:latest
+        image: ebbflow/ebbflow-client-linux-amd64:1.1
+        resources:
+          requests:
+            cpu: 80m
         args:
           - run-blocking
-          - --loglevel
-          - info
-          - --port
-          - '8000'
           - --dns
           - toby.pictures
           - --healthcheck-port
+          - '8000'
+          - --port
           - '8000'
         env:
           - name: EBB_KEY
@@ -37,5 +38,3 @@ spec:
               secretKeyRef:
                 name: ebbkey
                 key: ebbkey
-      imagePullSecrets:
-      - name: dockerconfigjson-github-com
